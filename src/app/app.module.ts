@@ -12,7 +12,7 @@ import { SuggestionFormComponent } from './features/suggestions/suggestion-form/
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { SuggestionDetailsComponent } from './suggestion-details/suggestion-details.component';
 import { UpdateSuggestionComponent } from './update-suggestion/update-suggestion.component';
-import { UserListMedaliAbidiComponent } from './user-list-medali-abidi/user-list-medali-abidi.component';
+import { UserListBenaliAdemComponent } from './user-list-benali-adem/user-list-benali-adem.component';
 import { ListUserComponent } from './core/list-user/list-user.component';
 import { UserFormComponent } from './features/users/user-form/user-form.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
@@ -29,7 +29,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     SuggestionFormComponent,
     SuggestionDetailsComponent,
     UpdateSuggestionComponent,
-    UserListMedaliAbidiComponent,
+    UserListBenaliAdemComponent,
     ListUserComponent,
     UserFormComponent,
     UserDetailsComponent,
