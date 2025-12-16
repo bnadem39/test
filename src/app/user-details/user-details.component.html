@@ -1,0 +1,101 @@
+<div class="container mt-4">
+    <!-- Loading -->
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error" class="alert alert-danger text-center">
+        {{ error }}
+        <br>
+        <a routerLink="/list-users" class="btn btn-primary mt-2">Retour à la liste</a>
+    </div>
+
+    <!-- User Details -->
+    <div *ngIf="user && !loading" class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">
+                <i class="bi bi-person-circle"></i> Détails de l'utilisateur
+            </h4>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>ID:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ user.id }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Nom:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ user.name }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Email:</strong>
+                </div>
+                <div class="col-md-9">
+                    <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Rôle:</strong>
+                </div>
+                <div class="col-md-9">
+                    <span class="badge" [ngClass]="getRoleBadgeClass(user.role)">
+                        {{ user.role }}
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <strong>Statut:</strong>
+                </div>
+                <div class="col-md-9">
+                    <span class="badge" [ngClass]="getStatusBadgeClass(user.status)">
+                        {{ user.status }}
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-3" *ngIf="user.created_at">
+                <div class="col-md-3">
+                    <strong>Créé le:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ user.created_at | date:'dd/MM/yyyy HH:mm' }}
+                </div>
+            </div>
+            <div class="row mb-3" *ngIf="user.updated_at">
+                <div class="col-md-3">
+                    <strong>Modifié le:</strong>
+                </div>
+                <div class="col-md-9">
+                    {{ user.updated_at | date:'dd/MM/yyyy HH:mm' }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-between">
+                <a routerLink="/list-users" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Retour
+                </a>
+                <div>
+                    <a [routerLink]="['/user/update', user.id]" class="btn btn-warning me-2">
+                        <i class="bi bi-pencil"></i> Modifier
+                    </a>
+                    <button class="btn btn-danger" (click)="deleteUser()">
+                        <i class="bi bi-trash"></i> Supprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

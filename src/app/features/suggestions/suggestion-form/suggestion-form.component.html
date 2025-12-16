@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card mt-5 mb-5">
+        <div class="card-body bg-light">
+            <h5 class="card-title text-center">Ajouter une Suggestion</h5>
+            <div>
+                <form [formGroup]="addSuggestionForm">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Titre : </label>
+                        <input type="text" formControlName="title" placeholder="Titre de la suggestion" class="form-control" id="title">
+                        <div class="alert alert-danger m-2" *ngIf="title?.errors?.['required'] && (title?.dirty || title?.touched)">Titre est requis.</div>
+                        <div class="alert alert-danger m-2" *ngIf="title?.errors?.['minlength'] && (title?.dirty || title?.touched)">Le titre doit contenir au moins 5 caractères.</div>
+                        <div class="alert alert-danger m-2" *ngIf="title?.errors?.['pattern'] && (title?.dirty || title?.touched)">Le titre doit commencer par une majuscule et ne contenir que des lettres.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Description : </label>
+                        <textarea formControlName="description" placeholder="Description de la suggestion" class="form-control" id="description"></textarea>
+                        <div class="alert alert-danger m-2" *ngIf="description?.errors?.['required'] && (description?.dirty || description?.touched)">Description est requise.</div>
+                        <div class="alert alert-danger m-2" *ngIf="description?.errors?.['minlength'] && (description?.dirty || description?.touched)">La description doit contenir au moins 10 caractères.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category">Catégorie : </label>
+                        <select formControlName="category" class="form-select" id="category">
+                            <option *ngFor="let category of categories" value="{{ category }}">{{ category }}</option>
+                        </select>
+                        <div class="alert alert-danger m-2" *ngIf="category?.errors?.['required'] && (category?.dirty || category?.touched)">Catégorie est requise.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date">Date : </label>
+                        <input type="date" formControlName="date" readonly class="form-control" id="date" name="date">
+                    </div>
+                    <div class="mb-3">
+                        <label for="status">Statut : </label>
+                        <input type="text" formControlName="status" readonly placeholder="Statut de la suggestion" class="form-control" id="status" name="status">
+                    </div>
+                    <button type="submit" [disabled]="addSuggestionForm.invalid" (click)="submitSuggestion()" class="btn btn-primary">Soumettre</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

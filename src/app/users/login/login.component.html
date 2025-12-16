@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="card mt-5 mb-5">
+        <div class="card-body">
+            <h5 class="card-title">Login</h5>
+            <form [formGroup]="loginForm">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" formControlName="email" placeholder="Email address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <div class="alert alert-danger m-2" *ngIf="loginForm.get('email')?.errors?.['required'] && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">Email address is required.</div>
+                    <div class="alert alert-danger m-2" *ngIf="loginForm.get('email')?.errors?.['email'] && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">Email address format is invalid.</div>
+
+                </div>    
+                <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" formControlName="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+                        <div class="alert alert-danger m-2" *ngIf="password?.errors?.['required'] && (password?.dirty || password?.touched)">Password is required.</div>
+                        <div class="alert alert-danger m-2" *ngIf="password?.errors?.['minlength'] && (password?.dirty || password?.touched)">Password must be at least 5 characters long.</div>
+
+                </div>
+                    <button type="submit" [disabled]="loginForm.invalid" (click)="login()" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="card mt-5 mb-5">
+        <div class="card-body bg-light">
+            <h5 class="card-title text-center">Ajouter un Utilisateur</h5>
+            <div>
+                <form [formGroup]="addUserForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom : </label>
+                        <input type="text" formControlName="name" placeholder="Nom de l'utilisateur"
+                            class="form-control" id="name">
+                        <div class="alert alert-danger m-2"
+                            *ngIf="name?.errors?.['required'] && (name?.dirty || name?.touched)">
+                            Le nom est requis.
+                        </div>
+                        <div class="alert alert-danger m-2"
+                            *ngIf="name?.errors?.['minlength'] && (name?.dirty || name?.touched)">
+                            Le nom doit contenir au moins 2 caractères.
+                        </div>
+                        <div class="alert alert-danger m-2"
+                            *ngIf="name?.errors?.['pattern'] && (name?.dirty || name?.touched)">
+                            Le nom ne doit contenir que des lettres.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email : </label>
+                        <input type="email" formControlName="email" placeholder="Email de l'utilisateur"
+                            class="form-control" id="email">
+                        <div class="alert alert-danger m-2"
+                            *ngIf="email?.errors?.['required'] && (email?.dirty || email?.touched)">
+                            L'email est requis.
+                        </div>
+                        <div class="alert alert-danger m-2"
+                            *ngIf="email?.errors?.['email'] && (email?.dirty || email?.touched)">
+                            Veuillez entrer un email valide.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Rôle : </label>
+                        <select formControlName="role" class="form-select" id="role">
+                            <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+                        </select>
+                        <div class="alert alert-danger m-2"
+                            *ngIf="role?.errors?.['required'] && (role?.dirty || role?.touched)">
+                            Le rôle est requis.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Statut : </label>
+                        <select formControlName="status" class="form-select" id="status">
+                            <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+                        </select>
+                        <div class="alert alert-danger m-2"
+                            *ngIf="status?.errors?.['required'] && (status?.dirty || status?.touched)">
+                            Le statut est requis.
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a routerLink="/list-users" class="btn btn-secondary">Annuler</a>
+                        <button type="submit" [disabled]="addUserForm.invalid" (click)="submitUser()"
+                            class="btn btn-primary">
+                            Créer l'utilisateur
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

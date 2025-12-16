@@ -1,0 +1,8 @@
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.btn {
+    min-width: 120px;
+}
